@@ -6,7 +6,7 @@
 /*   By: victo <victo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:39:59 by victo             #+#    #+#             */
-/*   Updated: 2023/04/23 12:17:38 by victo            ###   ########.fr       */
+/*   Updated: 2023/05/01 19:16:48 by victo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include <string>
 # include <iostream>
+#include <iomanip>
 
 class Contact
 {
@@ -27,13 +28,15 @@ class Contact
         std::string getFirstName() const;
         std::string getLastName() const;
         std::string getNickname() const;
+        std::string getPhoneNumber() const;
+        std::string getDarkestSecret() const;
 
     private:
-        std::string firstName_;
-        std::string lastName_;
-        std::string nickname_;
-        std::string phoneNumber_;
-        std::string darkestSecret_;
+        std::string _firstName;
+        std::string _lastName;
+        std::string _nickname;
+        std::string _phoneNumber;
+        std::string _darkestSecret;
 };
 
 class PhoneBook
@@ -41,12 +44,12 @@ class PhoneBook
     public:
         PhoneBook(void);
         ~PhoneBook();
-        void addContact();
+        void addContact(int index);
         void displayContacts() const;
         void searchContact() const;
 
     private:
-        Contact contacts[8];
+        Contact _contacts[8];
 };
 
 

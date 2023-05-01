@@ -6,7 +6,7 @@
 /*   By: victo <victo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:38:29 by victo             #+#    #+#             */
-/*   Updated: 2023/04/23 12:15:59 by victo            ###   ########.fr       */
+/*   Updated: 2023/05/01 12:16:28 by victo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,19 +15,44 @@
 void Contact::setContactInfo()
 {
     std::cout << "First Name: ";
-    std::getline(std::cin, firstName_);
+    std::getline(std::cin, _firstName);
 
     std::cout << "Last Name: ";
-    std::getline(std::cin, lastName_);
+    std::getline(std::cin, _lastName);
 
     std::cout << "Nickname: ";
-    std::getline(std::cin, nickname_);
+    std::getline(std::cin, _nickname);
 
     std::cout << "Phone Number: ";
-    std::getline(std::cin, phoneNumber_);
+    std::getline(std::cin, _phoneNumber);
 
     std::cout << "Darkest Secret: ";
-    std::getline(std::cin, darkestSecret_);
+    std::getline(std::cin, _darkestSecret);
+}
+
+std::string Contact::getFirstName() const
+{
+    return   this->_firstName;  
+}
+
+std::string Contact::getLastName() const
+{
+    return this->_lastName;
+}
+
+std::string Contact::getNickname() const
+{
+    return this->_nickname;
+}
+
+std::string Contact::getPhoneNumber() const
+{
+    return this->_phoneNumber;
+}
+
+std::string Contact::getDarkestSecret() const
+{
+    return this->_darkestSecret;
 }
 
 Contact::Contact(void)
