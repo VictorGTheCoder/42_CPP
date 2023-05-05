@@ -6,7 +6,7 @@
 /*   By: victo <victo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:39:59 by victo             #+#    #+#             */
-/*   Updated: 2023/05/01 19:16:48 by victo            ###   ########.fr       */
+/*   Updated: 2023/05/05 23:15:34 by victo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,10 +46,13 @@ class PhoneBook
         ~PhoneBook();
         void addContact(int index);
         void displayContacts() const;
+        void displayContact(int index) const;
         void searchContact() const;
+        int  getSize() const;
 
     private:
         Contact _contacts[8];
+        int     _nbContacts;
 };
 
 

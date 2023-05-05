@@ -6,7 +6,7 @@
 /*   By: victo <victo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 12:11:26 by victo             #+#    #+#             */
-/*   Updated: 2023/05/01 19:26:45 by victo            ###   ########.fr       */
+/*   Updated: 2023/05/05 23:44:12 by victo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,13 @@ int main(void)
             std::getline (std::cin, input);
             if (!input.empty() && std::isdigit(input[0]))
             {
-                int i = std::stoi(input);
-                if (i >= 0 && i < 8)
-                    phonebook._contacts[i].displayContact();
+                int i = input[0] - '0';
+                if (i >= 0 && i < phonebook.getSize() && input.length() == 1)
+                {
+                    phonebook.displayContact(i);
+                }
                 else
-                    std::cout << "The phonebook has only 8 contacts" << std::endl;
+                    std::cout << "invalid input" << std::endl;
             }
             else
                 std::cout << "Please enter a valid digit" << std::endl;
@@ -49,6 +51,5 @@ int main(void)
         else
             std::cout << "Please enter: ADD, SEARCH or EXIT" << std::endl;
     }
-    
     return 0;
 }

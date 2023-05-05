@@ -6,7 +6,7 @@
 /*   By: victo <victo@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:38:29 by victo             #+#    #+#             */
-/*   Updated: 2023/05/01 12:16:28 by victo            ###   ########.fr       */
+/*   Updated: 2023/05/05 23:23:13 by victo            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,13 +57,13 @@ std::string Contact::getDarkestSecret() const
 
 Contact::Contact(void)
 {
-	std::cout << "Contact Constructor called" << std::endl;
+	//std::cout << "Contact Constructor called" << std::endl;
 
 	return ;
 }
 
 Contact::~Contact(void)
 {
-	std::cout << "Contact Destructor called" << std::endl;
+	//std::cout << "Contact Destructor called" << std::endl;
 	return ;
 }
