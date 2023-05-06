@@ -1,14 +1,8 @@
 #include "HumanB.hpp"
 
-HumanB::HumanB(std::string name)
-{
-    _name = name;
-    _weapon = NULL;
-}
+HumanB::HumanB(std::string name) : _weapon(NULL), _name(name){}
 
-HumanB::~HumanB()
-{
-}
+HumanB::~HumanB(){}
 
 void HumanB::setWeapon(Weapon &weapon)
 {
