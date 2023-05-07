@@ -9,7 +9,6 @@
 
 class Harl
 {
-
     public:
         Harl();
         ~Harl();
@@ -19,8 +18,11 @@ class Harl
         void info(void);
         void warning(void);
         void error(void);
+        
         typedef void (Harl::*ComplaintFunction)(void);
-        std::map<std::string, ComplaintFunction> complaintFunctions;
+
+        std::map<std::string, ComplaintFunction> myMap;
+        std::map<std::string, int> myMapLevel;
 };
 
 
