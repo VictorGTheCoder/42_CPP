@@ -1,6 +1,9 @@
 #include "Fixed.hpp"
 
-int main( void ) {
+#include <iostream>
+
+int main( void )
+{
     Fixed a;
     Fixed b( a );
     Fixed c;
