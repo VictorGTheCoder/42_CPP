@@ -7,6 +7,7 @@ int main(void)
 	//ClapTrap bob("Bob");
 	//ScavTrap tod("Tod");
 	FragTrap alice("Alice");
+	FragTrap bob = alice;
 
 	/*tod.attack("Bob");
 	bob.takeDamage(2);
@@ -17,6 +18,8 @@ int main(void)
 
 	tod.beRepaired(3);
 	bob.beRepaired(2);*/
+
+
 
 	alice.highFivesGuys();
 	alice.attack("Alice");
