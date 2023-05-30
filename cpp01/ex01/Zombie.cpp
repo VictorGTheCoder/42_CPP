@@ -6,10 +6,9 @@ Zombie::Zombie(void)
 
 }
 
-Zombie::Zombie(std::string name)
+Zombie::Zombie(std::string name) : _name(name)
 {
     std::cout << "Create " << name << std::endl;
-    _name = name;
 }
 
 Zombie::~Zombie(void)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victo <victo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:30:58 by victo             #+#    #+#             */
-/*   Updated: 2023/04/23 12:02:12 by victo            ###   ########.fr       */
+/*   Updated: 2023/05/23 11:02:00 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int main(int argc, char const *argv[])
                 std::cout << (char) std::toupper(argv[i][j]);
                 j++;
             }
-            std::cout << "\n";
+            std::cout << std::endl;
             i++;
         }
     }

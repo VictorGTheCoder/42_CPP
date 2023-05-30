@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   phonebook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victo <victo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 12:07:18 by victo             #+#    #+#             */
-/*   Updated: 2023/05/05 23:33:20 by victo            ###   ########.fr       */
+/*   Updated: 2023/05/23 10:51:46 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.hpp"
+#include "PhoneBook.hpp"
 
 void PhoneBook::addContact(int index)
 {
@@ -35,7 +35,7 @@ std::string truncateAndAddDot(const std::string str)
 
 void PhoneBook::displayContacts() const
 {
-	std::cout << "     Index | First Name |  Last Name | Nickname\n";
+	std::cout << "     Index | First Name |  Last Name | Nickname" << std::endl;
 	for (int i = 0; i < this->getSize(); i++)
 	{
 		std::cout << std::setw(10) << std::setfill(' ') << std::right << i << " | ";
@@ -54,10 +54,9 @@ void PhoneBook::displayContact(int index) const
 	std::cout << "Darkest secret: " << _contacts[index].getDarkestSecret() << std::endl;
 }
 
-PhoneBook::PhoneBook(void)
+PhoneBook::PhoneBook(void) : _nbContacts(0)
 {
 	//std::cout << "PhoneBook Constructor called" << std::endl;
-	this->_nbContacts = 0;
 	return ;
 }
 

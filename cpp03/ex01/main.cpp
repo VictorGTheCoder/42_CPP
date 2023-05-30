@@ -15,5 +15,6 @@ int main(void)
 
 	tod.beRepaired(3);
 	bob.beRepaired(2);
+
 	return 0;
 }

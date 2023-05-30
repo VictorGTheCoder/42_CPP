@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: victo <victo@student.42.fr>                +#+  +:+       +#+        */
+/*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:38:29 by victo             #+#    #+#             */
-/*   Updated: 2023/05/05 23:23:13 by victo            ###   ########.fr       */
+/*   Updated: 2023/05/23 10:50:43 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "header.hpp"
+#include "Contact.hpp"
 
 void Contact::setContactInfo()
 {
