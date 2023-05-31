@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:30:58 by victo             #+#    #+#             */
-/*   Updated: 2023/05/23 11:02:00 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/05/31 12:19:17 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,18 @@ int main(int argc, char const *argv[])
     else
     {
         i = 1;
-        j = 0;
         while (i < argc)
         {
+            j = 0;
             while (argv[i][j])
             {
                 std::cout << (char) std::toupper(argv[i][j]);
                 j++;
             }
-            std::cout << std::endl;
+            std::cout << " " << std::flush;
             i++;
         }
+        std::cout << std::endl;
     }
     return 0;
 }

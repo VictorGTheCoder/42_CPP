@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   contact.cpp                                        :+:      :+:    :+:   */
+/*   Contact.cpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 11:38:29 by victo             #+#    #+#             */
-/*   Updated: 2023/05/23 10:50:43 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/05/31 18:02:50 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,20 +14,40 @@
 
 void Contact::setContactInfo()
 {
-    std::cout << "First Name: ";
-    std::getline(std::cin, _firstName);
+    _firstName = "";
+    _lastName = "";
+    _nickname = "";
+    _phoneNumber = "";
+    _darkestSecret = "";
+    while (_firstName.empty() && !std::cin.eof())
+    {
+        std::cout << "First Name: ";
+        std::getline(std::cin, _firstName);
+    }
 
-    std::cout << "Last Name: ";
-    std::getline(std::cin, _lastName);
+    while (_lastName.empty() && !std::cin.eof())
+    {
+        std::cout << "Last Name: ";
+        std::getline(std::cin, _lastName);
+    }
+    
+    while (_nickname.empty() && !std::cin.eof())
+    {    
+        std::cout << "Nickname: ";
+        std::getline(std::cin, _nickname);   
+    }
 
-    std::cout << "Nickname: ";
-    std::getline(std::cin, _nickname);
-
-    std::cout << "Phone Number: ";
-    std::getline(std::cin, _phoneNumber);
-
-    std::cout << "Darkest Secret: ";
-    std::getline(std::cin, _darkestSecret);
+    while (_phoneNumber.empty() && !std::cin.eof())
+    {
+        std::cout << "Phone Number: ";
+        std::getline(std::cin, _phoneNumber);
+    }
+    
+    while (_darkestSecret.empty() && !std::cin.eof())
+    {
+        std::cout << "Darkest Secret: ";
+        std::getline(std::cin, _darkestSecret);
+    }
 }
 
 std::string Contact::getFirstName() const

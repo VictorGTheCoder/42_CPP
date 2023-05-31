@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   phonebook.cpp                                      :+:      :+:    :+:   */
+/*   PhoneBook.cpp                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 12:07:18 by victo             #+#    #+#             */
-/*   Updated: 2023/05/23 10:51:46 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/05/31 16:49:25 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ std::string truncateAndAddDot(const std::string str)
 
 void PhoneBook::displayContacts() const
 {
-	std::cout << "     Index | First Name |  Last Name | Nickname" << std::endl;
+	std::cout << "     Index | First Name |  Last Name |   Nickname" << std::endl;
 	for (int i = 0; i < this->getSize(); i++)
 	{
 		std::cout << std::setw(10) << std::setfill(' ') << std::right << i << " | ";

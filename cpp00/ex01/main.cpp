@@ -6,7 +6,7 @@
 /*   By: vgiordan <vgiordan@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/04/23 12:11:26 by victo             #+#    #+#             */
-/*   Updated: 2023/05/23 10:52:07 by vgiordan         ###   ########.fr       */
+/*   Updated: 2023/05/31 12:26:03 by vgiordan         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int main(void)
     std::string input;
     int index = 0;
 
-    while (42)
+    while (42 && !std::cin.eof())
     {
         std::cout << "PhoneBook > ";
         std::getline (std::cin, input);

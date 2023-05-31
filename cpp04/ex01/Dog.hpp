@@ -15,7 +15,4 @@ public:
 	Dog &operator=(const Dog &dog);
 };
 
-
-
-
 #endif

@@ -8,11 +8,9 @@ class WrongCat : public WrongAnimal
 private:
 	
 public:
+	void makeSound() const;
 	WrongCat();
 	~WrongCat();
-	void makeSound() const;
 };
-
-
 
 #endif
