@@ -15,37 +15,29 @@ Harl::Harl(void)
 Harl::~Harl(void) {};
 
 
-
 void Harl::complain(const std::string &level)
 {
     std::map<std::string, int>::iterator it = myMapLevel.find(level);
 
     if (it == myMapLevel.end())
         return;
-
-    int maxLevelCode = it->second;
-
-    for (int levelCode = 0; levelCode >= maxLevelCode; ++levelCode)
+    int levelCode = it->second;
+    switch (levelCode)
     {
-        switch (levelCode)
-        {
-        case 0:
-            debug();
-            break;
-        case 1:
-            info();
-            break;
-        case 2:
-            warning();
-            break;
-        case 3:
-            error();
-            break;
-        default:
-            std::cout << "Probably complaining about insignificant problems ]\n";
-        }
+    case 0:
+        debug();
+    case 1:
+        info();
+    case 2:
+        warning();
+    case 3:
+        error();
+    default:
+        std::cout << "Probably complaining about insignificant problems ]\n";
     }
+    
 }
+
 
 void Harl::debug(void)
 {
