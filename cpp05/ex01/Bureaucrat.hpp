@@ -3,6 +3,8 @@
 
 #include <iostream>
 
+class Form;
+
 class Bureaucrat
 {
     private:
@@ -18,6 +20,7 @@ class Bureaucrat
 
         int getGrade();
         std::string const getName();
+        void signForm(Form f);
 
 };
 

@@ -1,32 +1,16 @@
-#include "Bureaucrat.hpp"
+
+#include "Form.hpp"
 
 int main()
 {
 
     std::cout << "\n<----- Init ----->\n" << std::endl;
 
-    Bureaucrat a("Alice", 0);
+    Bureaucrat a("Alice", 2);
     Bureaucrat b("Bob", 90);
+    Form f("Secret", false, 1);
 
-    std::cout << "\n<----- Promote / Demote ----->\n" << std::endl;
-
-    std::cout << b;
-
-    b.promote(50);
-
-    std::cout << b;
-
-    b.demote(50);
-
-    std::cout << b;
-
-    b.promote(500);
-
-    std::cout << b;
-
-    b.demote(500);
-
-    std::cout << b;
-
+    f.beSigned(b);
+    std::cout << f;
     return 0;
 }
