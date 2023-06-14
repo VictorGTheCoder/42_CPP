@@ -26,7 +26,7 @@ Fixed::Fixed(const int n)
 Fixed::Fixed(const float n)
 {
 	std::cout << "Float constructor called" << std::endl;
-	_fixedValue = round(n * (1 << _fractionalBits));
+	_fixedValue = static_cast<int>(roundf(n * (1 << _fractionalBits)));
 }
 
 Fixed &Fixed::operator=(const Fixed &f)
