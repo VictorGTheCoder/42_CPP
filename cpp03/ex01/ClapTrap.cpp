@@ -25,11 +25,15 @@ ClapTrap::~ClapTrap(void)
 void ClapTrap::attack(const std::string &target)
 {
 	if (_energyPoints == 0)
-		std::cout << "ClapTrap : " << _name << " has not enough hit points to attack !\n";
+		std::cout << "ClapTrap " << _name << " has not enough energy points to attack !\n";
+	else if (_hitPoint == 0)
+	{
+		std::cout << "ClapTrap " << _name << " has 0 hp, therefore he cannot attack !\n";
+	}
 	else
 	{
 		_energyPoints--;
-		std::cout << "ClapTrap : " <<  _name << " attacked " << target << " causing " << _attackDamage << " points of damage! He has " << _energyPoints <<" energy points\n";
+		std::cout << "ClapTrap " <<  _name << " attacked " << target << " causing " << _attackDamage << " points of damage! He has " << _energyPoints <<" energy points\n";
 	}
 }
 
@@ -59,15 +63,15 @@ void ClapTrap::beRepaired(unsigned int amount)
 	std::cout << _name << " has been rapaired for " << amount << " hp! He has " << _energyPoints << " energy points and " << _hitPoint << " hp\n";
 }
 
-ClapTrap &ClapTrap::operator=(const ClapTrap &rhs)
+ClapTrap &ClapTrap::operator=(const ClapTrap &src)
 {
     std::cout << "Copy assignment operator called" << std::endl;
-    if (this != &rhs)
+    if (this != &src)
     {
-        _name = rhs._name;
-		_energyPoints = rhs._energyPoints;
-		_hitPoint = rhs._hitPoint;
-		_attackDamage = rhs._attackDamage;
+        _name = src._name;
+		_energyPoints = src._energyPoints;
+		_hitPoint = src._hitPoint;
+		_attackDamage = src._attackDamage;
     }
     return *this;
 }

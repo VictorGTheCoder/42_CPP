@@ -11,6 +11,7 @@ int main(void)
 	clapclap.beRepaired(199);
 	clapclap.takeDamage(1);
 	clapclap.takeDamage(300);
+	clapclap.attack("Alice");
 	clapclap.beRepaired(199);
 
 	clap.attack("Bob");

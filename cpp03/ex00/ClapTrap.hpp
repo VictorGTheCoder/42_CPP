@@ -10,6 +10,7 @@ private:
 	unsigned int _hitPoint;
 	unsigned int _energyPoints;
 	unsigned int _attackDamage;
+
 public:
 	ClapTrap(void);
 	ClapTrap(const ClapTrap &src);
