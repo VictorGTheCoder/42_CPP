@@ -9,6 +9,7 @@ private:
 	
 public:
 	WrongCat();
+	WrongCat(WrongCat &src);
 	~WrongCat();
 	void makeSound() const;
 };

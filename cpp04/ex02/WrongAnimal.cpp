@@ -6,6 +6,12 @@ WrongAnimal::WrongAnimal()
 	std::cout << "WrongAnimal default constructor called " << std::endl;
 }
 
+WrongAnimal::WrongAnimal(WrongAnimal &wrongAnimal)
+{	
+	*this = wrongAnimal;
+	std::cout << "Animal copy consructor called" << std::endl;
+}
+
 WrongAnimal::~WrongAnimal()
 {
 	std::cout << "WrongAnimal destructor called" << std::endl;

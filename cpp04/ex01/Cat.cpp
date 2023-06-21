@@ -7,6 +7,12 @@ Cat::Cat()
 	std::cout << "Cat default constructor called" << std::endl;
 }
 
+Cat::Cat(Cat &src)
+{
+	*this = src;
+	std::cout << "Cat copy consructor called" << std::endl;	
+}
+
 Cat::~Cat()
 {
 	delete _brain;

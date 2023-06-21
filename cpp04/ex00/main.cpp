@@ -6,38 +6,39 @@
 
 int main() {
 
-	std::cout << "<------ Constructor ----->" << std::endl;
+	std::cout << "\n<------ Constructor -----> \n" << std::endl;
 
     const Animal* meta = new Animal();
     const Animal* j = new Dog();
     const Animal* i = new Cat();
 
-	std::cout << "<-------- TESTS ------->" << std::endl;
+	std::cout << "\n<-------- TESTS -------> \n" << std::endl;
 
-    std::cout << j->getType() << std::endl;
-    std::cout << i->getType() << std::endl;
+
+    std::cout << "Type : " << j->getType() << std::endl;
+    std::cout << "Type : " << i->getType() << "\n" << std::endl;
+  
     i->makeSound();
     j->makeSound();
     meta->makeSound();
 
-	std::cout << "<------ Destructor ------>" << std::endl;
+	std::cout << "\n<------ Destructor ------> \n" << std::endl;
 
     delete meta;
     delete j;
     delete i;
 
-	std::cout << "<------ Constructor ----->" << std::endl;
+	std::cout << "\n<------ Constructor -----> \n" << std::endl;
 
     const WrongAnimal* wrongMeta = new WrongAnimal();
     const WrongAnimal* wrongI = new WrongCat();
 
-	std::cout << "<-------- TEST -------->" << std::endl;
-
+	std::cout << "\n<-------- TEST --------> \n" << std::endl;
 
     std::cout << wrongI->getType() << std::endl;
     wrongI->makeSound();
 
-	std::cout << "<------ Destructor ------>" << std::endl;
+	std::cout << "\n<------ Destructor ------> \n" << std::endl;
 
     delete wrongMeta;
     delete wrongI;

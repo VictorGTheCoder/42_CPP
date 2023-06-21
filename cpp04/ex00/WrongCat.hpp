@@ -9,7 +9,11 @@ private:
 	
 public:
 	WrongCat();
+	WrongCat(WrongCat &src);
 	~WrongCat();
+
+	WrongCat &operator=(const WrongCat &src);
+	
 	void makeSound() const;
 };
 

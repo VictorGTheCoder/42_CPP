@@ -11,7 +11,6 @@ int main()
     const Animal* j = new Dog();
     const Animal* i = new Cat();
 
-
     const Animal* tabOfAnimals[10];
     for (int i = 0; i < 10; i++)
     {
@@ -29,6 +28,8 @@ int main()
         tabOfAnimals[i]->makeSound();
     }
         
+    std::cout << "<------ ";
+    
     std::cout << "<------ Destructor ------>" << std::endl;
 
     for (int i = 0; i < 10; i++)
@@ -37,8 +38,8 @@ int main()
     }
     
 
-    delete j;
     delete i;
+    delete j;
 
     return 0;
 }

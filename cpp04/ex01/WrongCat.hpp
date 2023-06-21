@@ -10,6 +10,7 @@ private:
 public:
 	void makeSound() const;
 	WrongCat();
+	WrongCat(WrongCat &src);
 	~WrongCat();
 };
 

@@ -9,7 +9,6 @@ ClapTrap::ClapTrap(std::string name) : _name(name), _hitPoint(10), _energyPoints
 ClapTrap::ClapTrap(std::string name, unsigned int hitPoint, unsigned int energyPoints, unsigned int attackDamage) : _name(name), _hitPoint(hitPoint), _energyPoints(energyPoints), _attackDamage(attackDamage)
 {std::cout << "ClapTrap full constructor called\n";}
 
-
 ClapTrap::ClapTrap(const ClapTrap &src)
 {
     std::cout << "Copy constructor called" << std::endl;

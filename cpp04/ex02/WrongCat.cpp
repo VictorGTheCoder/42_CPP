@@ -6,6 +6,12 @@ WrongCat::WrongCat()
 	std::cout << "WrongCat constructor called" << std::endl;
 }
 
+WrongCat::WrongCat(WrongCat &src)
+{
+	*this = src;
+	std::cout << "WrongCat copy constructor called" << std::endl;
+}
+
 WrongCat::~WrongCat()
 {
 	std::cout << "WrongCat destructor called" << std::endl;
