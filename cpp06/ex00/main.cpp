@@ -2,6 +2,35 @@
 #include "ScalarConverter.h"
 
 
+float stringToFloat(const std::string& s) {
+    float result = 0.0f;
+    int factor = 1;
+    size_t i = 0;
+
+    // Handle negative numbers
+    if (s[0] == '-') {
+        factor = -1;
+        i = 1;
+    }
+
+    // Parse the integer part
+    for (; i < s.size() && s[i] != '.'; i++) {
+        result = result * 10 + (s[i] - '0');
+    }
+
+    // Parse the decimal part
+    if (i < s.size() && s[i] == '.') {
+        float decimalPlace = 0.1f;
+        i++;
+        for (; i < s.size(); i++) {
+            result += (s[i] - '0') * decimalPlace;
+            decimalPlace /= 10;
+        }
+    }
+
+    return result * factor;
+}
+
 void displayChar(std::string s)
 {
 	int nb = atoi(s.c_str());
@@ -27,12 +56,47 @@ int main(int argc, char const *argv[])
         std::cerr << "Usage: " << argv[0] << " <value>" << std::endl;
         return 1;
     }
+
+
+    const char* s = "100.0f";
+
+
+    std::stringstream ss1;
+
+    ss1 << s;
+
+    int tt = atoi(s);
+    float result = stringToFloat(s);
+
+    std::cout << tt << std::endl;
+    std::cout << result << std::endl;
+
+
+
+
+
+
+
+
+
+
+
     std::string input = argv[1];
+    ScalarConverter n;
+    n.setString(input);
 
-    // Conversion en char
-	displayChar(input);
+    n.determineType();
 
-
+    DataType t = n.getType();
+    if (t == INT)
+        std::cout << "INT" << std::endl;
+    if (t == FLOAT)
+        std::cout << "FLOAT" << std::endl;
+    if (t == DOUBLE)
+        std::cout << "DOUBLE" << std::endl;
+    if (t == UNKNOWN)
+        std::cout << "UNKNOWN" << std::endl;        
+    std::cout << t << std::endl;
 
 
 
