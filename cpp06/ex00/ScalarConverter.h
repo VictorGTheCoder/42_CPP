@@ -25,14 +25,23 @@ enum DataType {
 class ScalarConverter 
 {
 	public:
-		static void	convert(const std::string& input);
-		void		setString(const std::string &str);
-		DataType	getType(void);
-		void		setType(DataType type);
-		void 		determineType(void);
+		std::string	_c;
+		std::string	_nb;
+		std::string	_nbf;
+		std::string	_nbd;
+		static void			convert(std::string input);
+		static void			displayAll(void);
+		static void			setString(const std::string &str);
+		static DataType		getType(void);
+		static std::string	getString(void);
+		static void			setType(DataType type);
+		static void 		determineType(void);
+
 	private:
 		std::string _str;
 		DataType _type;
+
+
 
 };
 
