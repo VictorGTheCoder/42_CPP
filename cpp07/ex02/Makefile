@@ -4,7 +4,7 @@ SRC = main.cpp
 
 OBJS := $(SRC:%.cpp=%.o)
 
-CPPFLAGS = -Wall -Wextra -std=c++98
+CPPFLAGS = -Wall -Wextra -Werror -std=c++98
 
 all: $(NAME)
 

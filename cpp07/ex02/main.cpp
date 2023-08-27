@@ -3,49 +3,42 @@
 #define MAX_VAL 750
 int main(int, char**)
 {
-    Array<int> numbers(MAX_VAL);
-    int* mirror = new int[MAX_VAL];
-    srand(time(NULL));
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        const int value = rand();
-        numbers[i] = value;
-        mirror[i] = value;
-    }
-    {
-        Array<int> tmp = numbers;
-        Array<int> test(tmp);
-    }
+    Array<int> numbers(10);
+    Array<int> cpy = numbers;
 
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        if (mirror[i] != numbers[i])
-        {
-            std::cerr << "didn't save the same value!!" << std::endl;
-            return 1;
-        }
-    }
+
+
+    std::cout << numbers[1] << std::endl;
+    std::cout << cpy[1] << std::endl;
+
+    numbers[1] = 2;
+
+    std::cout << "<---- After assignment ----->\n";
+    std::cout << numbers[1] << std::endl;
+    std::cout << cpy[1] << std::endl;
+
+    std::cout << "<------ Empty Array ------->\n";
+
+    Array<char> emptyArray;
+
     try
     {
-        numbers[-2] = 0;
+        std::cout << emptyArray[0] << std::endl;
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << "Index out of range exception" << std::endl;
     }
+    
     try
     {
-        numbers[MAX_VAL] = 0;
+        std::cout << numbers[10] << std::endl;
     }
     catch(const std::exception& e)
     {
-        std::cerr << e.what() << '\n';
+        std::cerr << "Index out of range exception" << std::endl;
     }
+    
 
-    for (int i = 0; i < MAX_VAL; i++)
-    {
-        numbers[i] = rand();
-    }
-    delete [] mirror;
     return 0;
 }

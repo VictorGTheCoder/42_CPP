@@ -8,48 +8,50 @@
 
 template <typename T>
 class Array {
-private:
-    T* data;
-    unsigned int n;
-
-public:
-    Array() : data(0), n(0) {}
-
-    Array(unsigned int count) : n(count) {
-        data = new T[count];
-        for(unsigned int i = 0; i < count; ++i)
-            data[i] = T();
-    }
-    Array(const Array& other) : n(other.n) {
-        data = new T[n];
-        for(unsigned int i = 0; i < n; ++i)
-            data[i] = other.data[i];
-    }
-    ~Array() {
-        delete[] data;
-    }
-    Array& operator=(const Array& other) {
-        if(this == &other)
+    public:
+        Array<T>(void)
+        {
+            this->_data = new T[0];
+            this->_size = 0;
+        }
+        Array<T>(unsigned int n)
+        {
+           	this->_data = new T[n];
+            this->_size = n; 
+        }
+        Array<T>(const Array &t)
+        {
+            this->_size = t._size;
+            this->_data = new T[this->_size];
+            for (unsigned int i = 0; i < this->_size; ++i) {
+                this->_data[i] = t._data[i];
+            }
+        }
+        ~Array<T>()
+        {
+            delete[] this->_data;
+        }
+        Array<T> &operator=(const Array<T> &t)
+        {
+            if (this != &t) {
+            delete[] this->_data;
+            this->_size = t._size;
+            this->_data = new T[this->_size];
+            for (unsigned int i = 0; i < this->_size; ++i) {
+                this->_data[i] = t._data[i];
+            }
+            }          
             return *this;
-
-        delete[] data;
-
-        n = other.n;
-        data = new T[n];
-        for(unsigned int i = 0; i < n; ++i)
-            data[i] = other.data[i];
-
-        return *this;
-    }
-
-    T& operator[](unsigned int index) {
-        if(index >= n)
-            throw std::exception();
-        return data[index];
-    }
-
-    unsigned int size() const {
-        return n;
-    }
+        }
+        T &operator[](unsigned int index)
+        {
+            if (index >= _size) {
+                throw std::exception();
+            }
+            return _data[index];
+        }
+    private:
+        T *_data;
+        unsigned int _size;
 };
 #endif
