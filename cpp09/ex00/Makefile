@@ -1,6 +1,6 @@
-NAME = convert
+NAME = btc
 
-SRC = main.cpp ScalarConverter.cpp display.cpp
+SRC = main.cpp BitcoinExchange.cpp
 
 OBJS := $(SRC:%.cpp=%.o)
 

@@ -1,6 +1,6 @@
-NAME = convert
+NAME = template
 
-SRC = main.cpp ScalarConverter.cpp display.cpp
+SRC = main.cpp
 
 OBJS := $(SRC:%.cpp=%.o)
 

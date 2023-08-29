@@ -1,5 +1,8 @@
 #include "ScalarConverter.h"
 
+std::string ScalarConverter::_str;
+DataType ScalarConverter::_type = UNKNOWN;
+
 void ScalarConverter::convert(std::string input)
 {
     ScalarConverter::setString(input);
@@ -9,6 +12,8 @@ void ScalarConverter::convert(std::string input)
     DataType t = ScalarConverter::getType();
     if (t == INT)
         std::cout << "INT" << std::endl;
+    if (t == CHAR)
+        std::cout << "CHAR" << std::endl;
     if (t == FLOAT)
         std::cout << "FLOAT" << std::endl;
     if (t == DOUBLE)
@@ -16,17 +21,24 @@ void ScalarConverter::convert(std::string input)
     if (t == UNKNOWN)
         std::cout << "UNKNOWN" << std::endl;        
     //std::cout << t << std::endl;
-    if (t == UNKNOWN)
-        return ;
+    displayAll();
 }
 
 
 void ScalarConverter::displayAll()
 {
-    std::cout << "char: " << "'" << _c << "'" << std::endl;
-    std::cout << "int: " << ScalarConverter::_nb << std::endl;
-    std::cout << "float: " << _nb_f << "f" << std::endl;
-    std::cout << "double: " << _nb_d << std::endl;
+    const char *s = _str.c_str();
+    char c = s[0];
+    if (_type == CHAR)
+        ScalarConverter::display(c);
+    else if (_type == DOUBLE)
+        ScalarConverter::display(std::atof(_str.c_str()));
+    else if (_type == FLOAT)
+        ScalarConverter::display(std::atof(_str.c_str()));
+    else if (_type == INT)
+        ScalarConverter::display(std::atoi(_str.c_str()));
+    else if (_type == UNKNOWN)
+        ScalarConverter::displayUnknown();
 }
 
 
@@ -64,8 +76,10 @@ void ScalarConverter::determineType(void)
     std::istringstream issDouble(str);
     double d;
     issDouble >> d;
-    // Check for float (ending in 'f' or 'F')
-    if (str[str.size() - 1] == 'f' || str[str.size() - 1] == 'F') {
+    if (str.length() == 1 && std::isprint(str[0])) {
+        setType(CHAR);
+    }
+    else if (str[str.size() - 1] == 'f' || str[str.size() - 1] == 'F') {
         setType(FLOAT);
     }
     else if (*end == '\0')

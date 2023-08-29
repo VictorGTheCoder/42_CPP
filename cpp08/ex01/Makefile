@@ -1,6 +1,6 @@
-NAME = convert
+NAME = span
 
-SRC = main.cpp ScalarConverter.cpp display.cpp
+SRC = main.cpp Span.cpp
 
 OBJS := $(SRC:%.cpp=%.o)
 
