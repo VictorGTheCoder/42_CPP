@@ -23,6 +23,8 @@ class BitcoinExchange
 		int _day;
 		int _month;
 		int _year;
+//		const std::string _date;
+		std::map<std::string, float> _rates;
 		const std::string _inputfile;
 };
 

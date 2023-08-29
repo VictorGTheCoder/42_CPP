@@ -1,5 +1,7 @@
 #include "BitcoinExchange.hpp"
 
+
+
 int main(int argc, char const *argv[])
 {
 	
@@ -9,8 +11,8 @@ int main(int argc, char const *argv[])
 		return (-1);
 	}
 	BitcoinExchange btc(argv[1]);
-	std::string date = "20a00-08-13";
+	std::string date = "2021-08-26";
 	if (btc.isValidDate(date))
-		std::cout << "Btc price at " << date << " is " << btc.getBitcointPriceAtData(date) << std::endl;
+		std::cout << "Btc price at " << date << " is " << (float) btc.getBitcointPriceAtData(date) << std::endl;
 	return 0;
 }
