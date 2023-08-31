@@ -1,7 +1,6 @@
 NAME = serialize
 
-SRC = main.cpp Serializer.cpp A.cpp B.cpp C.cpp
-
+SRC = main.cpp Serializer.cpp
 OBJS := $(SRC:%.cpp=%.o)
 
 CPPFLAGS = -Wall -Wextra -Werror -std=c++98

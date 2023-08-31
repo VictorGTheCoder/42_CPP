@@ -3,7 +3,7 @@
 void displayChar(char c)
 {
 	std::cout << "char: ";
-	if (c < 0 || c > 127)
+	if (c < 0) //c > 127
 		std::cout << "Impossible" << std::endl;
 	else if (c < 32 ||  c > 126)
 		std::cout << "Non displayable" << std::endl;
@@ -31,9 +31,18 @@ void ScalarConverter::display(int n)
 	float f = static_cast<float>(n);
 
     displayChar(c);
+
+	
+
     std::cout << "int: " << n << std::endl;
-    std::cout << "float: " << f << ".0f" << std::endl;
-    std::cout << "double: " << d << ".0" << std::endl;
+	if (n == f && f < 1000000)
+    	std::cout << "float: " << f << ".0f" << std::endl;
+	else
+    	std::cout << "float: " << f << "f" << std::endl;
+	if (n == d && d < 1000000)
+    	std::cout << "double: " << d << ".0" << std::endl;
+	else
+    	std::cout << "double: " << d << std::endl;
 }
 
 void ScalarConverter::display(float n)
@@ -43,12 +52,15 @@ void ScalarConverter::display(float n)
 	int i = static_cast<int>(n);
 
     displayChar(c);
-    std::cout << "int: " << i << std::endl;
-	if (i == n && n < 1000000 && n > 1000000)
+	if (n > INT_MAX)
+		std::cout << "int : Impossible" << std::endl;
+	else
+    	std::cout << "int: " << i << std::endl;
+	if (i == n && n < 1000000)
     	std::cout << "float: " << n << ".0f" << std::endl;
 	else
     	std::cout << "float: " << n << "f" << std::endl;
-	if (i == d && d < 1000000 && d > 1000000)
+	if (i == d && d < 1000000)
     	std::cout << "double: " << d << ".0" << std::endl;
 	else
     	std::cout << "double: " << d << std::endl;
@@ -61,13 +73,16 @@ void ScalarConverter::display(double n)
 	int i = static_cast<int>(n);
 
     displayChar(c);
-    std::cout << "int: " << i << std::endl;
-	if (i == f && f < 1000000 && f > 1000000)
+	if (n > INT_MAX)
+		std::cout << "int : Impossible" << std::endl;
+	else
+    	std::cout << "int: " << i << std::endl;
+	if (i == f && f < 1000000)
     	std::cout << "float: " << n << ".0f" << std::endl;
 	else
     	std::cout << "float: " << n << "f" << std::endl;
-	if (i == n && n < 1000000 && n > 1000000)
-    	std::cout << "double: " << n << ".0" << std::endl;
+	if (i == n && n < 1000000)
+    	std::cout << "double: " << n << std::endl;
 	else
     	std::cout << "double: " << n << std::endl;
 	

@@ -1,9 +1,8 @@
 #ifndef SCALAR
 # define SCALAR
 
-#include <limits>
+#include <climits>
 #include <iostream>
-#include <limits>
 #include <cstdlib>
 #include <sstream> 
 

@@ -9,18 +9,17 @@ void ScalarConverter::convert(std::string input)
 
     ScalarConverter::determineType();
 
-    DataType t = ScalarConverter::getType();
-    if (t == INT)
-        std::cout << "INT" << std::endl;
-    if (t == CHAR)
-        std::cout << "CHAR" << std::endl;
-    if (t == FLOAT)
-        std::cout << "FLOAT" << std::endl;
-    if (t == DOUBLE)
-        std::cout << "DOUBLE" << std::endl;
-    if (t == UNKNOWN)
-        std::cout << "UNKNOWN" << std::endl;        
-    //std::cout << t << std::endl;
+    // DataType t = ScalarConverter::getType();
+    // if (t == INT)
+    //     std::cout << "INT" << std::endl;
+    // if (t == CHAR)
+    //     std::cout << "CHAR" << std::endl;
+    // if (t == FLOAT)
+    //     std::cout << "FLOAT" << std::endl;
+    // if (t == DOUBLE)
+    //     std::cout << "DOUBLE" << std::endl;
+    // if (t == UNKNOWN)
+    //     std::cout << "UNKNOWN" << std::endl;     
     displayAll();
 }
 
@@ -69,15 +68,16 @@ void ScalarConverter::determineType(void)
 	std::string str = _str;
 
 
-    // Check if string is an integer
     char* end;
     strtol(str.c_str(), &end, 10);
-        // Check for double
     std::istringstream issDouble(str);
     double d;
     issDouble >> d;
     if (str.length() == 1 && std::isprint(str[0])) {
-        setType(CHAR);
+        if (std::isdigit(str[0]))
+            setType(INT);
+        else
+            setType(CHAR);
     }
     else if (str[str.size() - 1] == 'f' || str[str.size() - 1] == 'F') {
         setType(FLOAT);
@@ -85,6 +85,7 @@ void ScalarConverter::determineType(void)
     else if (*end == '\0')
     {
         setType(INT);
+
     }
     else if (!issDouble.fail() && issDouble.eof())
     {
@@ -94,4 +95,6 @@ void ScalarConverter::determineType(void)
     {
         setType(UNKNOWN);
     }
+    if (d > INT_MAX || d < INT_MIN)
+        setType(UNKNOWN);
 }
