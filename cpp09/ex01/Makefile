@@ -1,4 +1,4 @@
-NAME = btc
+NAME = rpn
 
 SRC = main.cpp RPN.cpp
 

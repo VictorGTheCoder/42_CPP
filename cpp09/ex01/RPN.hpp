@@ -22,7 +22,7 @@ class RPN
     private:
         std::string _exp;
         std::stack<char> _op;
-        std::stack<int> _nb;
+        std::stack<int> s;
 
     RPN &operator=(RPN &r);
 };
