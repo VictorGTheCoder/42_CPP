@@ -15,16 +15,12 @@ class RPN
     public:
         RPN();
         RPN(std::string exp);
-        RPN(RPN &r);
+        RPN(const RPN &r);
         ~RPN();
-
+        RPN &operator=(const RPN &r);
         void Parse(std::string exp);
     private:
-        std::string _exp;
-        std::stack<char> _op;
-        std::stack<int> s;
-
-    RPN &operator=(RPN &r);
+        std::stack<int> s;    
 };
 
 

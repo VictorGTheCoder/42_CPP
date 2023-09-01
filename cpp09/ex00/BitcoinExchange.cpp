@@ -70,9 +70,7 @@ float BitcoinExchange::getBitcointPriceAtData(const std::string &date)
 			new_date = build_date(temp_day, temp_month, temp_year);
 			i++;
 		}
-
 	}
-
 	return -0.1f;
 }
 

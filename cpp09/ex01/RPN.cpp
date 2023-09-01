@@ -40,6 +40,11 @@ RPN::RPN()
 {
 }
 
+RPN::RPN(const RPN &r)
+{
+    *this = r;
+}
+
 RPN::RPN(std::string exp)
 {
     Parse(exp);
@@ -47,4 +52,10 @@ RPN::RPN(std::string exp)
 
 RPN::~RPN()
 {
+}
+
+RPN& RPN::operator=(const RPN& r)
+{
+    this->s = r.s;
+    return *this;
 }
