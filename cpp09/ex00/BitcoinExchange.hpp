@@ -8,6 +8,7 @@
 #include <map>
 #include <string>
 #include <cstdlib>
+#include <cmath>
 
 class BitcoinExchange
 {
@@ -15,15 +16,12 @@ class BitcoinExchange
 		BitcoinExchange(const std::string &inputfile);
 		~BitcoinExchange();
 
-		float getBitcointPriceAtData(const std::string &date);
+		void readData(void);
+		float getBitcointPriceAtDate(const std::string &date);
 		bool isValidDate(const std::string &date);
+		void readFileAndProcess();
 
 	private:
-
-		int _day;
-		int _month;
-		int _year;
-//		const std::string _date;
 		std::map<std::string, float> _rates;
 		const std::string _inputfile;
 };

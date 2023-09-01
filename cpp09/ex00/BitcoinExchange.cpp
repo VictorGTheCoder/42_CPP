@@ -20,60 +20,6 @@ std::string build_date(int day, int month, int year)
 	return (str.str());
 }
 
-float BitcoinExchange::getBitcointPriceAtData(const std::string &date)
-{
-	(void) date;
-
-	std::ifstream db("data.csv");
-
-	if (!db.is_open())
-	{
-		std::cerr << "Failed to open file" << std::endl;
-		return (-1);
-	}
-
-	std::string new_date = build_date(_day, _month, _year);
-
-
-	std::string line;
-	std::string db_date;
-	while (std::getline(db, line))
-	{
-		int temp_day = _day;
-		int temp_month = _month;
-		int temp_year = _year;
-		int i = 0;
-		while (i < 4)
-		{
-			std::istringstream sstream(line);
-			std::string value;
-			std::vector<std::string> values;
-			while (std::getline(sstream, value, ','))
-				values.push_back(value);
-			std::cout << "New date " << new_date << "|" << values[0] << std::endl;
-			//std::cout << values[0] << " and " << "|" << new_date << "|" << std::endl;
-			if (values[0] == new_date)
-				return std::atof(values[1].c_str());
-			if (temp_day > 1)
-				temp_day--;
-			else if (temp_month > 1)
-			{
-				temp_day = 31;
-				temp_month--;
-			}
-			else
-			{
-				temp_day = 31;
-				temp_month = 12;
-				temp_year--;
-			}
-			new_date = build_date(temp_day, temp_month, temp_year);
-			i++;
-		}
-	}
-	return -0.1f;
-}
-
 bool isStringFormatCorrect(const std::string &str)
 {
     std::string::const_iterator it = str.begin();
@@ -90,41 +36,128 @@ bool isStringFormatCorrect(const std::string &str)
 
 bool BitcoinExchange::isValidDate(const std::string &date)
 {
+	int year;
+	int month;
+	int day;
 	char sep = '-';
 	if (isStringFormatCorrect(date) == false)
 	{
-		std::cout << "Date contains illegal char" << std::endl;
+		//std::cout << "Date contains illegal char" << std::endl;
  		return (false);
 	}
 	std::stringstream test(date);
-	std::string _yearStr, _monthStr, _dayStr;
+	std::string yearStr, monthStr, dayStr;
 
-	getline(test, _yearStr, sep);
-	getline(test, _monthStr, sep);
-	getline(test, _dayStr);
+	getline(test, yearStr, sep);
+	getline(test, monthStr, sep);
+	getline(test, dayStr);
 
 
-    std::stringstream(_yearStr) >> _year;
-    std::stringstream(_monthStr) >> _month;
-    std::stringstream(_dayStr) >> _day;
+    std::stringstream(yearStr) >> year;
+    std::stringstream(monthStr) >> month;
+    std::stringstream(dayStr) >> day;
 
-	std::cout << "Year: " << _year << " Month: " << _month << " Day: " << _day << std::endl;
-	if (_month < 1 || _month > 12)
+	//std::cout << "Year: " << year << " Month: " << month << " Day: " << day << std::endl;
+	if (month < 1 || month > 12)
 	{
-		std::cerr << "Date format is not Valid" << std::endl;
+		//std::cerr << "Date format is not Valid" << std::endl;
 		return false;
 	}
 
 	int daysInMonth[] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};
     
-    if (_year % 400 == 0 || (_year % 100 != 0 && _year	 % 4 == 0)) {
+    if (year % 400 == 0 || (year % 100 != 0 && year	 % 4 == 0)) {
         daysInMonth[2] = 29;
     }
 
-    if (_day < 1 || _day > daysInMonth[_month]) 
+    if (day < 1 || day > daysInMonth[month]) 
 	{
-		std::cerr << "This day never existed" << std::endl;
+		//std::cerr << "This day never existed" << std::endl;
 		return false;
 	}
 	return true;
 }
+
+void BitcoinExchange::readData()
+{
+	std::ifstream db("data.csv");
+	if (!db.is_open())
+	{
+		std::cerr << "Failed to open file" << std::endl;
+		return ;
+	}
+	std::string line;
+	std::string db_date;
+	while (std::getline(db, line))
+	{
+		// if (line.empty())
+		// 	continue;
+		std::istringstream sstream(line);
+		std::string value;
+		std::vector<std::string> values;
+		while (std::getline(sstream, value, ','))
+		{
+			values.push_back(value);
+		}
+		_rates[values[0]] = std::atof(values[1].c_str());
+	}
+
+}
+
+float BitcoinExchange::getBitcointPriceAtDate(const std::string &date)
+{
+	readData();
+	std::map<std::string, float>::const_iterator it = _rates.find(date);
+	if (it == _rates.end())
+	{
+		it = _rates.lower_bound(date);
+		--it;
+	}
+	return it->second;
+}
+
+void BitcoinExchange::readFileAndProcess()
+{
+	std::ifstream infile(_inputfile.c_str());
+	if (!infile.is_open())
+	{
+		std::cerr << "Failed to open the file." << std::endl;
+		return;
+	}
+	
+	std::string line;
+	while (std::getline(infile, line))
+	{
+		/*if (line.empty())
+			continue;*/
+		std::istringstream sstream(line);
+		std::string value;
+		std::vector<std::string> values;
+
+		while (std::getline(sstream, value, '|'))
+		{
+			values.push_back(value);
+		}
+
+		if (values.size() < 2) {
+			std::cerr << "Error: bad input => " << line << std::endl;
+			continue;
+		}
+		if (!isValidDate(values[0].substr(0, values[0].size() - 1)))
+			continue;
+
+		float btcnb = std::atof(values[1].c_str());
+		if (btcnb < 0)
+		{
+			std::cerr << "Error: not a positive number." << std::endl;
+			continue;
+		}
+		if (btcnb > 1000)
+		{
+			std::cerr << "Error: too large a number." << std::endl;
+			continue;
+		}
+		std::cout << values[0] << "=>" << values[1] << " = " << btcnb * getBitcointPriceAtDate(values[0]) << std::endl;
+	}
+}
+

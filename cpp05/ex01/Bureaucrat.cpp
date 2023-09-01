@@ -6,57 +6,46 @@ Bureaucrat::Bureaucrat() : _name("Smith"), _grade(150)
 
 Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 {
-    try
-    {
-        if (grade < 1)
-            throw std::runtime_error("Bureaucrat::GradeTooHighException");
-        else if (grade > 150)
-            throw std::runtime_error("Bureaucrat::GradeTooLowException");
-        _grade = grade;
-    }
-    catch (std::exception & e)
-    {
-        std::cout << e.what() << std::endl;
-    }
+    if (grade < 1)
+        throw Bureaucrat::GradeTooHighException();
+    else if (grade > 150)
+        throw Bureaucrat::GradeTooLowException();
+    _grade = grade;
 }
+
+Bureaucrat::Bureaucrat(const Bureaucrat &b) : _name(b._name), _grade(b._grade) {}
 
 Bureaucrat::~Bureaucrat()
 {
 
 }
 
+void Bureaucrat::signForm(Form &f)
+{
+    f.beSigned(*this);
+    std::cout << this->getName() << " signed " << f.getName() << std::endl;
+}
+
 void Bureaucrat::promote(int n)
 {
-    try
-    { 
-        if (_grade - n < 1)
-        {
-            throw std::runtime_error("Bureaucrat::GradeTooHighException");
-        }
-        else
-            _grade -= n;
-    }
-    catch(const std::exception& e)
+
+    if (_grade - n < 1)
     {
-        std::cerr << e.what() << '\n';
+        throw Bureaucrat::GradeTooHighException();
     }
+    else
+        _grade -= n;
+
 }
 
 void Bureaucrat::demote(int n)
 {
-    try
+    if (_grade + n > 150)
     {
-        if (_grade + n > 150)
-        {
-            throw std::runtime_error("Bureaucrat::GradeTooLowException");
-        }
-        else
-            _grade += n;
+        throw Bureaucrat::GradeTooLowException();
     }
-    catch(const std::exception& e)
-    {
-        std::cerr << e.what() << '\n';
-    }
+    else
+        _grade += n;
 }
 
 int Bureaucrat::getGrade()
@@ -73,4 +62,13 @@ std::ostream &operator<<(std::ostream &o, Bureaucrat &b)
 {
 	o << b.getName() << ", bureaucrate grade " << b.getGrade() << std::endl;
 	return o;
+}
+
+Bureaucrat &Bureaucrat::operator=(const Bureaucrat &b)
+{
+    if (this != &b)
+    {
+        this->_grade = b._grade;
+    }
+    return *this;
 }

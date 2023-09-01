@@ -1,25 +1,23 @@
 #include "Form.hpp"
 
-Form::Form() : _name("smith"), _signed(false), _grade(150) {}
+Form::Form() : _name("smith"), _signed(false), _signGrade(150), _execGrade(100){}
 
-Form::Form(std::string name, bool isSigned, int grade) : _name(name), _signed(isSigned), _grade(grade)
+Form::Form(std::string name, int grade) : _name(name), _signed(false), _signGrade(grade), _execGrade(100)
 {
-    try
+    if (grade > 150)
     {
-        if (grade > 150)
-        {
-            throw std::runtime_error("Form::GradeTooLowException");
-        }
-        else if (grade < 1)
-        {
-            throw std::runtime_error("Form::GradeTooHighException");
-        }
+        throw Form::GradeTooLowException();
     }
-    catch(const std::exception& e)
+    else if (grade < 1)
     {
-        std::cerr << e.what() << '\n';
+        throw Form::GradeTooHighException();
     }
 }
+
+Form::Form(const Form &f) : _name(f.getName()), _signed(f.isSigned()), _signGrade(f.getSignGrade()), _execGrade(f.getExecGrade())
+{
+}
+
 
 Form::~Form() {}
 
@@ -27,38 +25,43 @@ void Form::beSigned(Bureaucrat b)
 {
     if (this->_signed == false)
     {
-        if (this->_grade >= b.getGrade())
+        if (this->_signGrade >= b.getGrade())
         {
             this->_signed = true;
         }
         else
         {
-            std::cout << "Grade is not high enough" << std::endl;
+            throw Form::GradeTooLowException();
         }
     }
     else
     {
-        std::cout << "Form has already been signed";
+        std::cout <<  this->getName() << " has already been signed" << std::endl;
     }
 }
 
-std::string Form::getName()
+std::string Form::getName() const
 {
     return _name;
 }
 
-bool        Form::isSigned()
+bool        Form::isSigned() const
 {
     return _signed;
 }
 
-int         Form::getGrade()
+int         Form::getSignGrade() const
 {
-    return _grade;
+    return _signGrade;
+}
+
+int         Form::getExecGrade() const
+{
+    return _execGrade;
 }
 
 std::ostream &operator<<(std::ostream &o, Form &f)
 {
-    o << "Form " << f.getName() << ": signed " << f.isSigned() << ", grade needed " << f.getGrade() << std::endl; 
+    o << "Form " << f.getName() << ": signed " << f.isSigned() << ", sign grade needed " << f.getSignGrade() << ", execution grade needed " << f.getExecGrade() << std::endl; 
     return o;
 }

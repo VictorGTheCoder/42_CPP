@@ -2,6 +2,9 @@
 # define BUREAUCRAT_HPP
 
 #include <iostream>
+#include "AForm.hpp"
+
+class AForm;
 
 class Bureaucrat
 {
@@ -17,24 +20,28 @@ class Bureaucrat
         void    promote(int n);
         void    demote(int n);
 
-        int getGrade();
-        std::string const getName();
+        int getGrade() const;
+        std::string const getName() const;
+        void signForm(AForm &f);
+        void executeForm(AForm &f);
+
         Bureaucrat &operator=(Bureaucrat const &b);
 
-        class GradeTooLowException : public std::exception
+                class GradeTooLowException : public std::exception
         {
             virtual const char * what () const throw()
             {
-                return "Bureaucrat's grade can't be below 1";
+                return "Grade to low to sign Form";
             }
         };
         class GradeTooHighException : public std::exception
         {
             virtual const char * what () const throw()
             {
-                return "Bureaucrat's grade can't be above 150";
+                return "Grade to high to sign Form";
             }
         };
+
 };
 
 std::ostream &operator<<(std::ostream &o, Bureaucrat &b);

@@ -6,11 +6,19 @@ int main()
 
     std::cout << "\n<----- Init ----->\n" << std::endl;
 
-    Bureaucrat a("Alice", 2);
-    Bureaucrat b("Bob", 90);
-    Form f("Secret", false, 1);
+    try
+    {
+        Bureaucrat a("Alice", 2);
+        Bureaucrat b("Bob", 90);
+        Form f("Secret", 300);
 
-    f.beSigned(b);
-    std::cout << f;
+        f.beSigned(a);
+        f.beSigned(a);
+        std::cout << f;    
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
     return 0;
 }

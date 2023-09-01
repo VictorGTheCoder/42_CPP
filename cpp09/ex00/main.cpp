@@ -2,17 +2,33 @@
 
 
 
+
+
+
 int main(int argc, char const *argv[])
 {
 	
 	if (argc != 2)
 	{
-		std::cerr << "Error: could not open file." << std::endl;
+		std::cerr << "Error: Usage ./btc <file>" << std::endl;
 		return (-1);
 	}
 	BitcoinExchange btc(argv[1]);
-	std::string date = "2021-08-26";
+	std::string date = "2009-01-01";
 	if (btc.isValidDate(date))
-		std::cout << "Btc price at " << date << " is " << (float) btc.getBitcointPriceAtData(date) << std::endl;
+	{
+		std::cout << "Start Programm " << std::endl;
+		try
+		{
+			btc.readFileAndProcess();
+		}
+		catch(const std::exception& e)
+		{
+			std::cerr << e.what() << '\n';
+		}
+		
+		
+		//std::cout << "Btc price at " << date << " is " << (float) btc.getBitcointPriceAtDate(date) << std::endl;
+	}
 	return 0;
 }

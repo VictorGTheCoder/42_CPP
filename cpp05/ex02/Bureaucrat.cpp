@@ -15,16 +15,12 @@ Bureaucrat::Bureaucrat(const std::string name, int grade) : _name(name)
 
 Bureaucrat::Bureaucrat(const Bureaucrat &b) : _name(b._name), _grade(b._grade) {}
 
-
-Bureaucrat::~Bureaucrat()
-{
-
-}
+Bureaucrat::~Bureaucrat() {}
 
 void Bureaucrat::signForm(AForm &f)
 {
-    f.beSigned(*this);
-    std::cout << this->getName() << " signed " << f.getName() << std::endl;
+        f.beSigned(*this);
+        std::cout << this->getName() << " signed " << f.getName() << std::endl;
 }
 
 void Bureaucrat::executeForm(AForm &f)
@@ -41,7 +37,6 @@ void Bureaucrat::promote(int n)
     }
     else
         _grade -= n;
-
 }
 
 void Bureaucrat::demote(int n)
@@ -53,6 +48,7 @@ void Bureaucrat::demote(int n)
     else
         _grade += n;
 }
+
 int Bureaucrat::getGrade() const
 {
     return (this->_grade);

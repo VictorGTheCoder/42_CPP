@@ -1,6 +1,6 @@
-NAME = rpn
+NAME = a.out
 
-SRC = main.cpp RPN.cpp
+SRC = AForm.cpp Bureaucrat.cpp main.cpp PresidentialPardonForm.cpp RobotomyRequestForm.cpp ShrubberyCreationForm.cpp
 
 OBJS := $(SRC:%.cpp=%.o)
 

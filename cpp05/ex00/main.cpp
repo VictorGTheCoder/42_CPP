@@ -2,31 +2,47 @@
 
 int main()
 {
+    try
+    {
+        std::cout << "\n<----- Init ----->\n" << std::endl;
 
-    std::cout << "\n<----- Init ----->\n" << std::endl;
+        Bureaucrat a("Alice", 1);
+        Bureaucrat b("Bob", 90);
 
-    Bureaucrat a("Alice", 0);
-    Bureaucrat b("Bob", 90);
+        Bureaucrat c = a;
 
-    std::cout << "\n<----- Promote / Demote ----->\n" << std::endl;
+        std::cout << c;
 
-    std::cout << b;
+        std::cout << a;
+        std::cout << b;
 
-    b.promote(50);
+        a = b;
 
-    std::cout << b;
+        std::cout << a;
+        std::cout << b;
 
-    b.demote(50);
+        std::cout << "\n<----- Promote / Demote ----->\n" << std::endl;
 
-    std::cout << b;
+        b.promote(50);
 
-    b.promote(500);
+        std::cout << b;
 
-    std::cout << b;
+        b.demote(50);
 
-    b.demote(500);
+        std::cout << b;
 
-    std::cout << b;
+        b.promote(500);
+
+        std::cout << b;
+
+        b.demote(500);
+
+        std::cout << b;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
 
     return 0;
 }

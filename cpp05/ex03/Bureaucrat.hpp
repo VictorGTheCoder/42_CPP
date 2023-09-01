@@ -14,6 +14,7 @@ class Bureaucrat
     public:
         Bureaucrat();
         Bureaucrat(const std::string name, int grade);
+        Bureaucrat(const Bureaucrat &b);
         ~Bureaucrat();
 
         void    promote(int n);
@@ -24,6 +25,23 @@ class Bureaucrat
         void signForm(AForm &f);
         void executeForm(AForm &f);
 
+
+        Bureaucrat &operator=(Bureaucrat const &b);
+
+        class GradeTooLowException : public std::exception
+        {
+            virtual const char * what () const throw()
+            {
+                return "Grade to low to sign Form";
+            }
+        };
+        class GradeTooHighException : public std::exception
+        {
+            virtual const char * what () const throw()
+            {
+                return "Grade to high to sign Form";
+            }
+        };
 };
 
 std::ostream &operator<<(std::ostream &o, Bureaucrat &b);
