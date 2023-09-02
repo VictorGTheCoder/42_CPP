@@ -32,6 +32,7 @@ void AForm::beSigned(Bureaucrat &b)
         if (this->_signGrade >= b.getGrade())
         {
             this->_signed = true;
+            std::cout << b.getName() << " signed " << this->getName() << std::endl;
         }
         else
         {

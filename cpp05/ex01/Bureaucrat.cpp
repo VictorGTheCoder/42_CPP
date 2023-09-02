@@ -22,8 +22,15 @@ Bureaucrat::~Bureaucrat()
 
 void Bureaucrat::signForm(Form &f)
 {
-    f.beSigned(*this);
-    std::cout << this->getName() << " signed " << f.getName() << std::endl;
+    try
+    {
+        f.beSigned(*this);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << this->getName() << " couldn't sign " << f.getName() << " because "; 
+        std::cerr << e.what() << '\n';
+    }
 }
 
 void Bureaucrat::promote(int n)

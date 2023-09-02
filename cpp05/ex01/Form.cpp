@@ -14,10 +14,7 @@ Form::Form(std::string name, int grade) : _name(name), _signed(false), _signGrad
     }
 }
 
-Form::Form(const Form &f) : _name(f.getName()), _signed(f.isSigned()), _signGrade(f.getSignGrade()), _execGrade(f.getExecGrade())
-{
-}
-
+Form::Form(const Form &f) : _name(f.getName()), _signed(f.isSigned()), _signGrade(f.getSignGrade()), _execGrade(f.getExecGrade()){}
 
 Form::~Form() {}
 
@@ -28,6 +25,7 @@ void Form::beSigned(Bureaucrat b)
         if (this->_signGrade >= b.getGrade())
         {
             this->_signed = true;
+            std::cout << b.getName() << " signed " << this->getName() << std::endl;
         }
         else
         {
@@ -36,7 +34,7 @@ void Form::beSigned(Bureaucrat b)
     }
     else
     {
-        std::cout <<  this->getName() << " has already been signed" << std::endl;
+        throw Form::FormIsAlreadySigned();
     }
 }
 
@@ -60,8 +58,20 @@ int         Form::getExecGrade() const
     return _execGrade;
 }
 
+Form &Form::operator=(const Form &f)
+{
+    if (this != &f)
+    {
+        this->_signed = f._signed;
+    }
+    return *this;
+}
+
 std::ostream &operator<<(std::ostream &o, Form &f)
 {
-    o << "Form " << f.getName() << ": signed " << f.isSigned() << ", sign grade needed " << f.getSignGrade() << ", execution grade needed " << f.getExecGrade() << std::endl; 
+    if (f.isSigned())
+        o << "Form " << f.getName() << " is signed" << ", sign grade needed " << f.getSignGrade() << ", execution grade needed " << f.getExecGrade() << std::endl;
+    else
+        o << "Form " << f.getName() << " is not signed" << ", sign grade needed " << f.getSignGrade() << ", execution grade needed " << f.getExecGrade() << std::endl;
     return o;
 }

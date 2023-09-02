@@ -25,18 +25,27 @@ class Form
         int         getSignGrade() const;
         int         getExecGrade() const;
 
+        Form &operator=(Form const &f);
+
         class GradeTooLowException : public std::exception
         {
             virtual const char * what () const throw()
             {
-                return "Form: Grade to low.";
+                return "Grade to low.";
             }
         };
         class GradeTooHighException : public std::exception
         {
             virtual const char * what () const throw()
             {
-                return "Form: Grade to high.";
+                return "Grade to high.";
+            }
+        };
+        class FormIsAlreadySigned : public std::exception
+        {
+            virtual const char * what () const throw()
+            {
+                return "Form has already been signed.";
             }
         };
 };

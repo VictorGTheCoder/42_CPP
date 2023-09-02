@@ -3,18 +3,21 @@
 
 int main()
 {
-
-    std::cout << "\n<----- Init ----->\n" << std::endl;
-
     try
     {
         Bureaucrat a("Alice", 2);
         Bureaucrat b("Bob", 90);
-        Form f("Secret", 300);
 
-        f.beSigned(a);
-        f.beSigned(a);
+        Form f("Secret", 50);
+        Form f2("Secret2", 50);
+
+
         std::cout << f;    
+        a.signForm(f);
+        a.signForm(f);
+
+        b.signForm(f2);  
+        a.signForm(f2);
     }
     catch(const std::exception& e)
     {

@@ -9,30 +9,25 @@ int main()
 {
     try
     {
-        Bureaucrat a("Alice", 2);
-        AForm *f = new RobotomyRequestForm("Zombie");
+        Bureaucrat a("Alice", 1);
+        Intern intern;
 
-        a.signForm(*f);
-        a.executeForm(*f);
+        AForm *form = intern.makeForm("robotomy request", "Boss");
+
+        a.signForm(*form);
+        a.executeForm(*form);
+
+        
+        form = intern.makeForm("robotomy", "Boss");
+        form = intern.makeForm("robotomy", "Boss");
+
+
+        delete (form);
     }
     catch(const std::exception& e)
     {
         std::cerr << e.what() << '\n';
     }
-    {
-        try
-        {
-            Intern someRandomIntern;
-            AForm* rrf;
-            rrf = someRandomIntern.makeForm("robotoamy request", "Bender");
-            (void) rrf;
-        }
-        catch(const std::exception& e)
-        {
-            std::cerr << e.what() << '\n';
-        }
-        
-
-    }
     return 0;
 }
+

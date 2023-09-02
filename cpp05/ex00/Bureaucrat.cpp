@@ -54,7 +54,7 @@ std::string const Bureaucrat::getName()
 
 std::ostream &operator<<(std::ostream &o, Bureaucrat &b)
 {
-	o << b.getName() << ", bureaucrate grade " << b.getGrade() << std::endl;
+	o << b.getName() << ", bureaucrate grade " << b.getGrade();
 	return o;
 }
 

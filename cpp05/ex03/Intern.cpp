@@ -27,20 +27,20 @@ AForm* Intern::makeForm(std::string formName, std::string formTarget)
         std::string name;
         AForm *form;
     };
-
-    // Array of form names and their corresponding creation functions
     FormCreator formCreators[] = {
         {"shrubbery creation", new ShrubberyCreationForm(formTarget)},
         {"robotomy request", new RobotomyRequestForm(formTarget)},
         {"presidential pardon", new RobotomyRequestForm(formTarget)}
     };
 
-    for (size_t i = 0; i < sizeof(formCreators) / sizeof(FormCreator); i++) {
-        if (formCreators[i].name == formName) {
+    for (size_t i = 0; i < sizeof(formCreators) / sizeof(FormCreator); i++)
+    {
+        if (formCreators[i].name == formName)
+        {
             std::cout << "Intern creates " << formName << std::endl;
             return formCreators[i].form;
         }
     }
     throw FormNotFoundException();
-    return NULL; // This line won't be reached, but it's here to prevent compiler warnings.
+    return NULL;
 }

@@ -19,13 +19,30 @@ Bureaucrat::~Bureaucrat() {}
 
 void Bureaucrat::signForm(AForm &f)
 {
+    try
+    {
         f.beSigned(*this);
-        std::cout << this->getName() << " signed " << f.getName() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << this->getName() << " couldn't sign " << f.getName() << " because "; 
+        std::cerr << e.what() << '\n';
+    }
 }
+
 
 void Bureaucrat::executeForm(AForm &f)
 {
-    f.execute(*this);
+    try
+    {
+        f.execute(*this);
+        std::cout << this->getName() << " executed " << f.getName() << std::endl;
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
 }
 
 void Bureaucrat::promote(int n)
