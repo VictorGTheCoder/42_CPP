@@ -11,25 +11,28 @@ bool isNumber(std::string str)
     return true;
 }
 
-PmergeMe::PmergeMe(void)
-{
-}
+PmergeMe::PmergeMe(void) {}
 
-PmergeMe::PmergeMe(std::string input)
+PmergeMe::PmergeMe(char **input)
 {
-    std::stringstream input_stringstream(input);
+    std::stringstream input_stringstream(*input);
     std::string arg;
-    while (getline(input_stringstream, arg, ' '))
+    input++;
+    while (*input)
     {
+        arg = *input;
         if (!isNumber(arg))
         {
             std::cout << "Error" << std::endl;
+            _numbersList.clear();
+            _numbersVec.clear();
             return ;
         }
         int nb = std::atoi(arg.c_str());
-        _list.push_front(nb);
+        _numbersList.push_back(nb);
+        _numbersVec.push_back(nb);
+        input++;
     }
-    std::cout << _list.front() << std::endl;
 }
 
 PmergeMe::PmergeMe(const PmergeMe &p)
@@ -39,11 +42,138 @@ PmergeMe::PmergeMe(const PmergeMe &p)
 
 PmergeMe::~PmergeMe(){}
 
-void PmergeMe::sort(void)
+
+PmergeMe	&PmergeMe::operator=(const PmergeMe &pm)
 {
-    std::list<int> &list = _list;
+    if (this != &pm)
+    {
+        this->_numbersList = pm._numbersList;
+        this->_numbersVec = pm._numbersVec;
+    }
+	return (*this);
+}
+
+void binaryInsert(std::vector<int> &c, int val)
+{
+    std::vector<int>::iterator position = std::lower_bound(c.begin(), c.end(), val);
+    c.insert(position, val);
+}
+
+void binaryInsertList(std::list<int> &c, int val)
+{
+    std::list<int>::iterator position = std::lower_bound(c.begin(), c.end(), val);
+    c.insert(position, val);
+}
 
 
+static void mergeInsertSortHelperVector(std::vector<int> &list)
+{
+    if (list.size() <= 1) return;
+    //Mettre les elements par paires
+    std::vector<std::pair<int, int> > pairs;
+    for (size_t i = 0; i + 1 < list.size(); i += 2)
+        pairs.push_back((std::pair<int, int>){list[i], list[i + 1]});
 
+    //Divisier en 2 listes des plus petits et plus grand elements de chaque liste
+    std::vector<int> smaller, larger;
+    for (size_t i = 0; i < pairs.size(); i++)
+    {
+        if (pairs[i].first > pairs[i].second)
+        {
+            larger.push_back(pairs[i].first);
+            smaller.push_back(pairs[i].second);
+        }
+        else
+        {
+            larger.push_back(pairs[i].second);
+            smaller.push_back(pairs[i].first);
+        }
+    }
 
+    //Checker si il y a un elements sans paire
+    if (list.size() % 2)
+        smaller.push_back(list.back());
+    
+    //On appele recusivement avec la list des plus grand
+    if (larger.size() > 1)
+        mergeInsertSortHelperVector(larger);
+
+    //On insert les elements de smaller dans larger avec un binary search
+    for (size_t i = 0; i < smaller.size(); i++)
+    {
+        binaryInsert(larger, smaller[i]);
+    }
+    list = larger;
+}
+
+void PmergeMe::mergeInsertSortWithVector()
+{
+    mergeInsertSortHelperVector(_numbersVec);
+}
+
+static void mergeInsertSortHelperList(std::list<int> &list)
+{
+    if (list.size() <= 1) return;
+    //Mettre les elements par paires
+    std::list<std::pair<int, int> > pairs;
+    //std::list<int>::iterator it = list.begin();
+    while (list.size())
+    {
+        int a = list.front(); list.pop_front();
+        int b = list.front(); list.pop_front();
+        pairs.push_back(std::pair<int, int>(a, b));
+    }
+
+    //Divisier en 2 listes des plus petits et plus grand elements de chaque liste
+    std::list<int> smaller, larger;
+    while (pairs.size() > 0)
+    {
+        int _first = pairs.front().first;
+        int _second = pairs.front().second;
+        pairs.pop_front();
+
+        if (_first > _second) {
+            larger.push_back(_first);
+            smaller.push_back(_second);
+        } else {
+            larger.push_back(_second);
+            smaller.push_back(_first);
+        }
+    }
+
+    //Checker si il y a un elements sans paire
+    if (list.size() % 2)
+        smaller.push_back(list.back());
+    
+    //On appele recusivement avec la list des plus grand
+    if (larger.size() > 1)
+        mergeInsertSortHelperList(larger);
+
+    //On insert les elements de smaller dans larger avec un binary search
+    while (smaller.size() > 0)
+    {
+        binaryInsertList(larger, smaller.front());
+        smaller.pop_front();
+    }
+    list = larger;
+}
+
+void PmergeMe::mergeInsertSortWithList()
+{
+    std::list<int> &list = _numbersList;
+    mergeInsertSortHelperList(list);
+}
+
+void PmergeMe::displayList()
+{
+    if (_numbersList.empty())
+        return;
+    display(_numbersList);
+}
+
+void PmergeMe::displayVector()
+{
+    if (_numbersVec.empty())
+        return;
+    display(_numbersVec);
 }

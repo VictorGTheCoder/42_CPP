@@ -5,17 +5,41 @@
 #include <vector>
 #include <cstdlib>
 #include <list>
+#include <algorithm>
+#include <vector>
+#include <utility>
+
 
 class PmergeMe
 {
     private:
-        std::list<int> _list;
+        std::list<int> _numbersList;
+        std::vector<int> _numbersVec;
         std::list<int> _sortedlist;
         std::list<int>::iterator binarySearch(std::list<int>& list, std::list<int>::iterator end, int value);
         void insertOrdered(std::list<int>& list, std::vector<int>& toInsert);
     public:
         PmergeMe();
-        PmergeMe(std::string input);
+        PmergeMe(const PmergeMe &p);
+        PmergeMe(char **input);
         ~PmergeMe();
-        void sort();
+        void mergeInsertSortWithVector();
+        void mergeInsertSortWithList();
+
+        void displayList();
+        void displayVector();
+
+        template <typename Container>
+        void display(const Container& c)
+        {
+            typename Container::const_iterator it = c.begin();
+            while (it != c.end()) {
+                std::cout << *it << " ";
+                ++it;
+            }
+            std::cout << std::endl;
+        }
+
+        PmergeMe &operator=(const PmergeMe &p);
+
 };
