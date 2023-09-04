@@ -98,3 +98,11 @@ void ScalarConverter::determineType(void)
     if (d > INT_MAX || d < INT_MIN)
         setType(UNKNOWN);
 }
+
+
+
+ScalarConverter::ScalarConverter(){};
+
+ScalarConverter::ScalarConverter(ScalarConverter &s){(void) s;};
+
+ScalarConverter::~ScalarConverter(){};

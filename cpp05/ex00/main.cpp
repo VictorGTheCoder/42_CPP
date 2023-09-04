@@ -9,6 +9,7 @@ int main()
         a.demote(2);
         std::cout << a << std::endl;
         a.promote(3); 
+        std::cout << a << std::endl;
     }
     catch(const std::exception& e)
     {

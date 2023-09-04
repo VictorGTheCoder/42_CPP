@@ -33,9 +33,10 @@ class ScalarConverter
 
 	private:
 		ScalarConverter();
+		ScalarConverter(ScalarConverter &s);
+		~ScalarConverter();
 		static std::string _str;
 		static DataType _type;
 };
-
 
 #endif

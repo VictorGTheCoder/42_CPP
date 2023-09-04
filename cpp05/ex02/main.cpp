@@ -14,7 +14,6 @@ int main()
         AForm *f3 = new PresidentialPardonForm();
 
         std::cout << "<-------- F1 -------->" << std::endl;
-        a.executeForm(*f);
         a.signForm(*f);
         a.executeForm(*f);
         std::cout << "<-------- F2 -------->" << std::endl;

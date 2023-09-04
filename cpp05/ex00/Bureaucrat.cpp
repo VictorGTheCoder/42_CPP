@@ -20,7 +20,7 @@ Bureaucrat::~Bureaucrat()
 
 }
 
-void Bureaucrat::promote(int n)
+void Bureaucrat::promote(unsigned int n)
 {
 
     if (_grade - n < 1)
@@ -32,7 +32,7 @@ void Bureaucrat::promote(int n)
 
 }
 
-void Bureaucrat::demote(int n)
+void Bureaucrat::demote(unsigned int n)
 {
     if (_grade + n > 150)
     {

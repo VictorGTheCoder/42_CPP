@@ -30,9 +30,9 @@ void RobotomyRequestForm::execute(Bureaucrat const &executor) const
     else
     {
 		std::cout << executor.getName() << " executed " << this->getName() << std::endl;
-        std::cout << "BRRRRRR... BRRRR... VRRRR..." << std::endl; // Bruits de perceuse
+        std::cout << "BRRRRRR... BRRRR... VRRRR..." << std::endl;
 		srand(time(NULL));
-        if (rand() % 2) // 50% de chance de succès
+        if (rand() % 2)
         {
             std::cout << getTarget() << " has been robotomized successfully." << std::endl;
         }

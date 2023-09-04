@@ -26,7 +26,7 @@ void ShrubberyCreationForm::execute(Bureaucrat const &executor) const
     	throw GradeTooLowException();
     std::string fName = (getTarget() + "_shrubbery");
     std::ofstream myFile(fName.c_str());
-    myFile << getTarget() << "     oxoxoo    ooxoo\n  ooxoxo oo  oxoxooo \n oooo xxoxoo ooo ooox\n oxo o oxoxo  xoxxoxo\n  oxo xooxoooo o ooo\n    ooo\\oo\\  /o/o\n        \\  \\/ /\n         |   /\n         |  |\n         | D|\n         |  |\n         |  |\n  ______/____\\____"<< std::endl;
+    myFile << getTarget() << "\n     oxoxoo    ooxoo\n  ooxoxo oo  oxoxooo \n oooo xxoxoo ooo ooox\n oxo o oxoxo  xoxxoxo\n  oxo xooxoooo o ooo\n    ooo\\oo\\  /o/o\n        \\  \\/ /\n         |   /\n         |  |\n         | D|\n         |  |\n         |  |\n  ______/____\\____"<< std::endl;
     myFile.close();
 }
 

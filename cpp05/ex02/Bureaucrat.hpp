@@ -17,8 +17,8 @@ class Bureaucrat
         Bureaucrat(const Bureaucrat &b);
         ~Bureaucrat();
 
-        void    promote(int n);
-        void    demote(int n);
+        void    promote(unsigned int n);
+        void    demote(unsigned int n);
 
         int getGrade() const;
         std::string const getName() const;

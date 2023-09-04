@@ -15,6 +15,11 @@ Serializer::Serializer()
 {
 }
 
+Serializer::Serializer(Serializer &s)
+{
+	(void) s;
+}
+
 Serializer::~Serializer()
 {
 }

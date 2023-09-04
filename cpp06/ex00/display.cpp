@@ -3,7 +3,7 @@
 void displayChar(char c)
 {
 	std::cout << "char: ";
-	if (c < 0) //c > 127
+	if (c < 0)
 		std::cout << "Impossible" << std::endl;
 	else if (c < 32 ||  c > 126)
 		std::cout << "Non displayable" << std::endl;
