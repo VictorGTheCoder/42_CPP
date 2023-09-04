@@ -19,17 +19,19 @@ class PmergeMe
         std::list<int> _sortedlist;
         std::list<int>::iterator binarySearch(std::list<int>& list, std::list<int>::iterator end, int value);
         void insertOrdered(std::list<int>& list, std::vector<int>& toInsert);
+        void mergeInsertSortWithVector();
+        void mergeInsertSortWithList();
     public:
         PmergeMe();
         PmergeMe(const PmergeMe &p);
         PmergeMe(char **input);
         ~PmergeMe();
-        void mergeInsertSortWithVector();
-        void mergeInsertSortWithList();
 
         void displayList();
         void displayVector();
 
+        void mergeInsertSort();
+        
         template <typename Container>
         void display(const Container& c)
         {

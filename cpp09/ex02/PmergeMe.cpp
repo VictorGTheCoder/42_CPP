@@ -108,14 +108,7 @@ static void mergeInsertSortHelperVector(std::vector<int> &list)
 
 void PmergeMe::mergeInsertSortWithVector()
 {
-    int size = _numbersVec.size();
-    std::chrono::microseconds timer(1000);
-    long long start_time = std::chrono::high_resolution_clock::now();
     mergeInsertSortHelperVector(_numbersVec);
-    std:::: end_time = std::chrono::high_resolution_clock::now();
-    
-    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
-    std::cout << "Time to process a range of " << size << " elements with std::vector<int> : " << timer.count() << std::endl;
 }
 
 static void mergeInsertSortHelperList(std::list<int> &list)
@@ -170,8 +163,34 @@ static void mergeInsertSortHelperList(std::list<int> &list)
 
 void PmergeMe::mergeInsertSortWithList()
 {
-
     mergeInsertSortHelperList(_numbersList);
+}
+
+void PmergeMe::mergeInsertSort()
+{
+    if (_numbersList.empty())
+        return ;
+    int size = _numbersList.size();
+    std::cout << "Before : ";
+    displayVector(); 
+    
+    
+    std::chrono::time_point<std::chrono::high_resolution_clock> start_time = std::chrono::high_resolution_clock::now();
+    mergeInsertSortWithList();
+    std::chrono::time_point<std::chrono::high_resolution_clock> end_time = std::chrono::high_resolution_clock::now();
+    std::chrono::microseconds duration1 = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time);
+    
+    
+    start_time = std::chrono::high_resolution_clock::now();
+    mergeInsertSortWithVector();
+    end_time = std::chrono::high_resolution_clock::now();
+    std::chrono::microseconds duration2 = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time);
+
+
+    std::cout << "After : ";
+    displayVector();
+    std::cout << "Time to process a range of " << size << " elements with std::list<int> : " << duration1.count() << std::endl;
+    std::cout << "Time to process a range of " << size << " elements with std::vector<int> : " << duration2.count() << std::endl;
 }
 
 void PmergeMe::displayList()
