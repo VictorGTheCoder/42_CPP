@@ -52,7 +52,6 @@ bool BitcoinExchange::isValidDate(const std::string &date)
 	getline(test, monthStr, sep);
 	getline(test, dayStr);
 
-
     std::stringstream(yearStr) >> year;
     std::stringstream(monthStr) >> month;
     std::stringstream(dayStr) >> day;
