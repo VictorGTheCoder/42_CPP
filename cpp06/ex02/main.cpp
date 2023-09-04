@@ -31,11 +31,11 @@ Base* generate()
 void identify(Base* p) 
 {
 	std::cout << "Identify with pointer" << std::endl;
-    if (dynamic_cast<A*>(p))
+    if (dynamic_cast<A*>(p) != nullptr)
         std::cout << "A" << std::endl;
-    else if (dynamic_cast<B*>(p))
+    else if (dynamic_cast<B*>(p) != nullptr)
         std::cout << "B" << std::endl;
-    else if (dynamic_cast<C*>(p))
+    else if (dynamic_cast<C*>(p) != nullptr)
         std::cout << "C" << std::endl;
     else
         std::cout << "Unknown type" << std::endl;
@@ -46,21 +46,21 @@ void identify(Base& p)
 	std::cout << "Identify with ref" << std::endl;
 	try
 	{
-		dynamic_cast<A&>(p);
+		(void)dynamic_cast<A&>(p);
 		std::cout << "A" << std::endl;
 	}
 	catch(const std::exception& e)
 	{
 		try
 		{
-			dynamic_cast<B&>(p);
+			(void)dynamic_cast<B&>(p);
 			std::cout << "B" << std::endl;
 		}
 		catch(const std::exception& e)
 		{
 			try
 			{
-				dynamic_cast<C&>(p);
+				(void)dynamic_cast<C&>(p);
 				std::cout << "C" << std::endl;
 			}
 			catch(const std::exception& e)
