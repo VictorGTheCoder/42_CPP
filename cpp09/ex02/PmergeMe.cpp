@@ -72,7 +72,7 @@ static void mergeInsertSortHelperVector(std::vector<int> &list)
     //Mettre les elements par paires
     std::vector<std::pair<int, int> > pairs;
     for (size_t i = 0; i + 1 < list.size(); i += 2)
-        pairs.push_back((std::pair<int, int>){list[i], list[i + 1]});
+        pairs.push_back(std::pair<int, int>(list[i], list[i + 1]));
 
     //Divisier en 2 listes des plus petits et plus grand elements de chaque liste
     std::vector<int> smaller, larger;
@@ -108,7 +108,14 @@ static void mergeInsertSortHelperVector(std::vector<int> &list)
 
 void PmergeMe::mergeInsertSortWithVector()
 {
+    int size = _numbersVec.size();
+    std::chrono::microseconds timer(1000);
+    long long start_time = std::chrono::high_resolution_clock::now();
     mergeInsertSortHelperVector(_numbersVec);
+    std:::: end_time = std::chrono::high_resolution_clock::now();
+    
+    auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end_time - start_time).count();
+    std::cout << "Time to process a range of " << size << " elements with std::vector<int> : " << timer.count() << std::endl;
 }
 
 static void mergeInsertSortHelperList(std::list<int> &list)
@@ -117,7 +124,7 @@ static void mergeInsertSortHelperList(std::list<int> &list)
     //Mettre les elements par paires
     std::list<std::pair<int, int> > pairs;
     //std::list<int>::iterator it = list.begin();
-    while (list.size())
+    while (list.size() >= 2)
     {
         int a = list.front(); list.pop_front();
         int b = list.front(); list.pop_front();
@@ -142,9 +149,12 @@ static void mergeInsertSortHelperList(std::list<int> &list)
     }
 
     //Checker si il y a un elements sans paire
-    if (list.size() % 2)
+    if (!list.empty())
+    {
         smaller.push_back(list.back());
-    
+        list.pop_back();    
+    }
+
     //On appele recusivement avec la list des plus grand
     if (larger.size() > 1)
         mergeInsertSortHelperList(larger);
@@ -160,8 +170,8 @@ static void mergeInsertSortHelperList(std::list<int> &list)
 
 void PmergeMe::mergeInsertSortWithList()
 {
-    std::list<int> &list = _numbersList;
-    mergeInsertSortHelperList(list);
+
+    mergeInsertSortHelperList(_numbersList);
 }
 
 void PmergeMe::displayList()

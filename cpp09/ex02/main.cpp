@@ -8,18 +8,18 @@ int main(int argc, char *argv[])
 
 
     std::cout << "Vector" << std::endl;
-    std::cout << "Not sorted" << std::endl;
+    std::cout << "Before: ";
     m->displayVector();
     m->mergeInsertSortWithVector();   
-    std::cout << "Sorted" << std::endl;
+    std::cout << "After: ";
     m->displayVector();
 
 
     std::cout << "List" << std::endl;
-    std::cout << "Not Sorted" << std::endl;
+    std::cout << "Before: ";
     m->displayList();
     m->mergeInsertSortWithList();
-    std::cout << "Sorted" << std::endl;
+    std::cout << "After: ";
     m->displayList();
 
     delete(m);
