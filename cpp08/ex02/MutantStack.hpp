@@ -6,31 +6,24 @@
 #include <stack>
 #include <list>
 
-template <typename T, typename Container = std::deque<T> >
-class MutantStack : public std::stack<T, Container>
+template <typename T>
+class MutantStack : public std::stack<T>
 {
-	private:
-		
 	public:
-		MutantStack(){};
-		~MutantStack(){};
+		MutantStack();
+		~MutantStack();
+		MutantStack(const MutantStack& src);
 
-		MutantStack(const MutantStack &m) 
+		typedef typename std::stack<T>::container_type::iterator myiterator;
+		myiterator begin()
 		{
-			*this = m;
-		};
-
-
-	typedef typename Container::iterator iterator;
-	iterator begin()
-	{
-		return this->c.begin();
-	}
-	iterator end()
-	{
-		return this->c.end();
-	}
-
+			return this->c.begin();
+		}
+		myiterator end()
+		{
+			return this->c.end();
+		}
+		MutantStack& operator=(const MutantStack& rhs);
 };
 
 #endif

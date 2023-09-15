@@ -1,4 +1,5 @@
 #include "MutantStack.hpp"
+#include "MutantStack.tpp"
 
 int main()
 {
@@ -16,8 +17,8 @@ int main()
 		mstack.push(0);
 
 
-		MutantStack<int>::iterator it = mstack.begin();
-		MutantStack<int>::iterator ite = mstack.end();
+		MutantStack<int>::myiterator it = mstack.begin();
+		MutantStack<int>::myiterator ite = mstack.end();
 		++it;
 		--it;
 		while (it != ite)

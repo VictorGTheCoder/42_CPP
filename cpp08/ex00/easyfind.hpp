@@ -1,7 +1,7 @@
 #ifndef EASYFIND_HPP
 # define EASYFIND_HPP
 
-#include <algorithm>
+# include <algorithm>
 # include <iostream>
 
 template <typename T>
@@ -16,8 +16,5 @@ void easyfind(T &int_container, int target)
 		std::cout << "Target not found" << std::endl;
 	}
 }
-
-
-
 
 #endif
