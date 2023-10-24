@@ -10,6 +10,8 @@
 #include <utility>
 #include <chrono>
 
+std::vector<int> generateJacobsthalNumbers(int n);
+int jacobsthal(int n);
 
 class PmergeMe
 {
