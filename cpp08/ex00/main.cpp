@@ -11,6 +11,5 @@ int main()
 	easyfind(vec, 1);	
 	easyfind(vec, 10);
 
-
 	return 0;
 }

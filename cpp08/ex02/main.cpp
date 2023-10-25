@@ -15,8 +15,6 @@ int main()
 		mstack.push(737);
 		//[...]
 		mstack.push(0);
-
-
 		MutantStack<int>::myiterator it = mstack.begin();
 		MutantStack<int>::myiterator ite = mstack.end();
 		++it;
@@ -27,15 +25,14 @@ int main()
 			++it;
 		}
 		std::stack<int> s(mstack);
-
 	}
 	std::cout << "<------- List ------>" << std::endl;
 	{
 		std::list<int> mylist;
 		mylist.push_back(5);
 		mylist.push_back(17);
-		std::cout << mylist.front() << std::endl;
-		mylist.pop_back();
+		std::cout << mylist.back() << std::endl;
+		mylist.pop_front();
 		std::cout << mylist.size() << std::endl;
 		mylist.push_back(3);
 		mylist.push_back(5);
@@ -52,6 +49,34 @@ int main()
 			++it;
 		}
 		std::list<int> s(mylist);
+	}
+	{
+		std::cout << "<------- Copy ------>" << std::endl;
+
+		MutantStack<int> mstack;
+
+		mstack.push(5);
+		mstack.push(3);
+
+		MutantStack<int> cpy(mstack);
+
+		mstack.pop();
+
+		MutantStack<int>::myiterator it = mstack.begin();
+		MutantStack<int>::myiterator ite = mstack.end();
+		while (it != ite)
+		{
+			std::cout << *it << std::endl;
+			++it;
+		}
+		std::cout << "-------------" << std::endl;
+		MutantStack<int>::myiterator itc = cpy.begin();
+		MutantStack<int>::myiterator itec = cpy.end();
+		while (itc != itec)
+		{
+			std::cout << *itc << std::endl;
+			++itc;
+		}
 	}
 	return 0;
 
