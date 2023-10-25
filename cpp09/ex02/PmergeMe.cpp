@@ -66,30 +66,6 @@ void binaryInsertList(std::list<int> &c, int val)
     c.insert(position, val);
 }
 
-
-void insertUsingJacobsthal(std::vector<int> &larger, std::vector<int> &smaller) {
-    int n = smaller.size();
-    int past_index = 0;
-    bool end = false;
-    for (int i = 0; i < n; i++)
-    {
-        int range = jacobsthal(i);
-        int c_index = past_index + range;
-        if (c_index >= n)
-        {
-            c_index = n - 1;
-            end = true;
-        }
-        while (c_index >= past_index)
-        {
-            binaryInsert(larger, smaller[c_index]);
-            c_index--;
-        }
-        if (end)
-            break;
-    }
-}
-
 static void mergeInsertSortHelperVector(std::vector<int> &list)
 {
     if (list.size() <= 1) return;
@@ -201,7 +177,7 @@ void PmergeMe::mergeInsertSort()
     
     
     std::chrono::time_point<std::chrono::high_resolution_clock> start_time = std::chrono::high_resolution_clock::now();
-    //mergeInsertSortWithList();
+    mergeInsertSortWithList();
     std::chrono::time_point<std::chrono::high_resolution_clock> end_time = std::chrono::high_resolution_clock::now();
     std::chrono::microseconds duration1 = std::chrono::duration_cast<std::chrono::microseconds>(end_time - start_time);
     
