@@ -1,13 +1,7 @@
 #include "BitcoinExchange.hpp"
 
-
-
-
-
-
 int main(int argc, char const *argv[])
 {
-	
 	if (argc != 2)
 	{
 		std::cerr << "Error: Usage ./btc <file>" << std::endl;
@@ -21,13 +15,12 @@ int main(int argc, char const *argv[])
 		try
 		{
 			btc.readFileAndProcess();
+			//std::cout << "Readed" << std::endl;
 		}
 		catch(const std::exception& e)
 		{
 			std::cerr << e.what() << '\n';
-		}
-		
-		
+		}		
 		//std::cout << "Btc price at " << date << " is " << (float) btc.getBitcointPriceAtDate(date) << std::endl;
 	}
 	return 0;

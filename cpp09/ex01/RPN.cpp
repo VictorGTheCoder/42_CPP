@@ -19,7 +19,14 @@ void RPN::Parse(std::string exp)
                 if (arg == "*")
                     s.push(a * b);
                 if (arg == "/")
-                    s.push(a / b);
+                {
+                    if (b == 0)
+                    {
+                        throw std::runtime_error("Error dividing by '0'");
+                    }
+                    else
+                        s.push(a / b);
+                }
             }
        }
        else if (arg.size() == 1 && std::isdigit(arg[0]))
@@ -28,8 +35,7 @@ void RPN::Parse(std::string exp)
        }
        else
        {
-            std::cerr << "Error" << std::endl;
-            return ;
+            throw std::runtime_error("Expression cannot be compute");
        }
     }
     if (s.size())
@@ -47,11 +53,21 @@ RPN::RPN(const RPN &r)
 
 RPN::RPN(std::string exp)
 {
-    Parse(exp);
+    try
+    {
+        Parse(exp);
+    }
+    catch(const std::exception& e)
+    {
+        std::cerr << e.what() << '\n';
+    }
+    
+
 }
 
 RPN::~RPN()
 {
+    
 }
 
 RPN& RPN::operator=(const RPN& r)

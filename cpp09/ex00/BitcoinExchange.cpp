@@ -1,6 +1,9 @@
 #include "BitcoinExchange.hpp"
 
-BitcoinExchange::BitcoinExchange(const std::string &inputfile) : _inputfile(inputfile) {}
+BitcoinExchange::BitcoinExchange(const std::string &inputfile) : _inputfile(inputfile)
+{
+	readData();
+}
 
 BitcoinExchange::~BitcoinExchange() {}
 
@@ -100,30 +103,38 @@ void BitcoinExchange::readData()
 		}
 		_rates[values[0]] = std::atof(values[1].c_str());
 	}
-
 }
 
 float BitcoinExchange::getBitcointPriceAtDate(const std::string &date)
 {
-	readData();
 	std::map<std::string, float>::const_iterator it = _rates.find(date);
-	if (it == _rates.end())
-	{
-		it = _rates.lower_bound(date);
-		--it;
+	if (it == _rates.end())// when we can't find the exact date
+	{	
+			it = _rates.lower_bound(date);
+			if (it == _rates.begin()) //when nth is found
+			{
+				return it->second; //return first element
+			}
+			else
+			{
+				--it;
+			}
+	
 	}
+	// if (it->second == 0.0)
+	// 	std::cout << "No data for that date" << std::endl;
 	return it->second;
 }
 
 void BitcoinExchange::readFileAndProcess()
 {
+	
 	std::ifstream infile(_inputfile.c_str());
 	if (!infile.is_open())
 	{
 		std::cerr << "Failed to open the file." << std::endl;
 		return;
 	}
-	
 	std::string line;
 	while (std::getline(infile, line))
 	{
@@ -132,7 +143,6 @@ void BitcoinExchange::readFileAndProcess()
 		std::istringstream sstream(line);
 		std::string value;
 		std::vector<std::string> values;
-
 		while (std::getline(sstream, value, '|'))
 		{
 			values.push_back(value);
@@ -142,9 +152,10 @@ void BitcoinExchange::readFileAndProcess()
 			std::cerr << "Error: bad input => " << line << std::endl;
 			continue;
 		}
+		//std::cout << values[0] << std::endl;
 		if (!isValidDate(values[0].substr(0, values[0].size() - 1)))
 			continue;
-
+		
 		float btcnb = std::atof(values[1].c_str());
 		if (btcnb < 0)
 		{
@@ -159,4 +170,3 @@ void BitcoinExchange::readFileAndProcess()
 		std::cout << values[0] << "=>" << values[1] << " = " << btcnb * getBitcointPriceAtDate(values[0]) << std::endl;
 	}
 }
-
